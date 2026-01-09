@@ -16,7 +16,7 @@ function Login() {
       return;
     }
     try{
-      const res = await fetch("http://localhost:8000/login",{
+      const res = await fetch("https://backend-ihgr.onrender.com/login",{
         method:"POST",
         headers:{"Content-type": "application/json"},
         body:JSON.stringify({
