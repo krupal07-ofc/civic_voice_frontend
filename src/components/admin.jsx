@@ -5,7 +5,7 @@ function Home() {
   const [issues, setIssues] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/issues")
+    fetch("https://backend-ihgr.onrender.com/issues")
       .then((res) => res.json())
       .then((data) => setIssues(data))
       .catch((err) => console.error(err));
