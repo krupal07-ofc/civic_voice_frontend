@@ -3,7 +3,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter, Navigate } from "react-router-dom";
 import Register from './components/register';
 import Login from './components/login.jsx';
 import NavBar from './components/navBar';
@@ -19,6 +19,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      { index: true, element: <Navigate to="/home" replace /> },
       { path: "register", element: <Register /> },
       { path: "login", element: <Login /> },
       { path: "problems", element: <Problems /> },
@@ -32,6 +33,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-      <RouterProvider router = {router} />
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )

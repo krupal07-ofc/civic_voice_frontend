@@ -23,19 +23,7 @@ function NavBar() {
           </div>
 
           <div className="col-md-3 d-flex justify-content-end gap-2">
-            <Link
-              to="/login"
-              className="btn btn-outline-primary auth-btn text-decoration-none"
-            >
-              Login
-            </Link>
-
-            <Link
-              to="/register"
-              className="btn btn-outline-primary auth-btn text-decoration-none"
-            >
-              Sign Up
-            </Link>
+            {/* Auth buttons removed */}
           </div>
         </div>
       </header>
