@@ -2,6 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { API_BASE_URL } from "../config";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -15,23 +17,23 @@ function Login() {
       setErr("Please fill all fields!");
       return;
     }
-    try{
-      const res = await fetch("https://backend-ihgr.onrender.com/login",{
-        method:"POST",
-        headers:{"Content-type": "application/json"},
-        body:JSON.stringify({
+    try {
+      const res = await fetch(`${API_BASE_URL}/login`, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
           email: email,
           password: pass,
         })
       })
       const data = await res.json();
-      if(!res.ok){
+      if (!res.ok) {
         setErr(data.msg);
         return;
       }
       navigate('/home');
     }
-    catch(error){
+    catch (error) {
       setErr("Server Error");
     }
   }
@@ -54,7 +56,7 @@ function Login() {
               id="email"
               value={email}
               placeholder="name@example.com"
-              onChange={(e)=>setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <label htmlFor="email">Email address</label>
           </div>
@@ -66,7 +68,7 @@ function Login() {
               id="password"
               value={pass}
               placeholder="Password"
-              onChange={(e)=>setPass(e.target.value)}
+              onChange={(e) => setPass(e.target.value)}
             />
             <label htmlFor="password">Password</label>
           </div>

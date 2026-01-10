@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import IssuesMap from "./issueMap";
 import './home.css';
+import { API_BASE_URL } from "../config";
 
 function Home() {
   const [issues, setIssues] = useState([]);
 
   useEffect(() => {
-https://backend-ihgr.onrender.com/issues      .then((res) => res.json())
+    fetch(`${API_BASE_URL}/issues`).then((res) => res.json())
       .then((data) => setIssues(data))
       .catch(console.error);
   }, []);
@@ -31,32 +32,32 @@ https://backend-ihgr.onrender.com/issues      .then((res) => res.json())
       </section>
 
       <section className="stats-section">
-  <div className="container">
-    <div className="row text-center">
+        <div className="container">
+          <div className="row text-center">
 
-      {/* TOTAL PROBLEMS */}
-      <div className="col-md-4">
-        <h3>{issues.length}</h3>
-        <p>Problems Reported</p>
-      </div>
+            {/* TOTAL PROBLEMS */}
+            <div className="col-md-4">
+              <h3>{issues.length}</h3>
+              <p>Problems Reported</p>
+            </div>
 
-      {/* TOTAL REQUESTS */}
-      <div className="col-md-4">
-        <h3>
-          {issues.filter(issue => issue.type === "Manual").length}
-        </h3>
-        <p>Requests Submitted</p>
-      </div>
+            {/* TOTAL REQUESTS */}
+            <div className="col-md-4">
+              <h3>
+                {issues.filter(issue => issue.type === "Manual").length}
+              </h3>
+              <p>Requests Submitted</p>
+            </div>
 
-      {/* AI DETECTION */}
-      <div className="col-md-4">
-        <h3>AI</h3>
-        <p>Gemini Detection</p>
-      </div>
+            {/* AI DETECTION */}
+            <div className="col-md-4">
+              <h3>AI</h3>
+              <p>Gemini Detection</p>
+            </div>
 
-    </div>
-  </div>
-</section>
+          </div>
+        </div>
+      </section>
 
 
 

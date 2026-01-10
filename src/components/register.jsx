@@ -2,10 +2,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { API_BASE_URL } from "../config";
+
 function Register() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-  const [err, setErr] = useState(""); 
+  const [err, setErr] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const navigate = useNavigate();
 
@@ -20,24 +22,24 @@ function Register() {
       setErr("Passwords do not match!");
       return;
     }
-    try{
-      const res = await fetch("https://backend-ihgr.onrender.com/register",{
-        method:"POST",
-        headers:{"Content-type": "application/json"},
-        body:JSON.stringify({
+    try {
+      const res = await fetch(`${API_BASE_URL}/register`, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
           email: email,
           password: pass,
         })
       })
       const data = await res.json();
-      if(!res.ok){
+      if (!res.ok) {
         setErr(data.detail || data.msg || "Registration failed");
         return;
       }
       alert("Registration successful");
       navigate('/home');
     }
-    catch(error){
+    catch (error) {
       setErr("Server Error");
     }
   }
@@ -60,7 +62,7 @@ function Register() {
               id="email"
               value={email}
               placeholder="name@example.com"
-              onChange={(e)=>setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <label htmlFor="email">Email address</label>
           </div>
@@ -72,7 +74,7 @@ function Register() {
               id="password"
               value={pass}
               placeholder="Password"
-              onChange={(e)=>setPass(e.target.value)}
+              onChange={(e) => setPass(e.target.value)}
             />
             <label htmlFor="password">Password</label>
           </div>
@@ -84,7 +86,7 @@ function Register() {
               id="confirmPassword"
               value={confirmPass}
               placeholder="Confirm Password"
-              onChange={(e)=>setConfirmPass(e.target.value)}
+              onChange={(e) => setConfirmPass(e.target.value)}
             />
             <label htmlFor="confirmPassword">Confirm Password</label>
           </div>

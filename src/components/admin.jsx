@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import IssuesMap from "./issueMap";
+import { API_BASE_URL } from "../config";
 
 function Home() {
   const [issues, setIssues] = useState([]);
 
   useEffect(() => {
-    fetch("https://backend-ihgr.onrender.com/issues")
+    fetch(`${API_BASE_URL}/issues`)
       .then((res) => res.json())
       .then((data) => setIssues(data))
       .catch((err) => console.error(err));

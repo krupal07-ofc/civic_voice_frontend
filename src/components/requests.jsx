@@ -2,6 +2,8 @@ import { useState } from "react";
 import Location from "./geoLocation";
 import "./requests.css";
 
+import { API_BASE_URL } from "../config";
+
 function Requests() {
   const [text, setText] = useState("");
   const [lat, setLat] = useState(null);
@@ -23,7 +25,7 @@ function Requests() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8000/requests", {
+      const res = await fetch(`${API_BASE_URL}/requests`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

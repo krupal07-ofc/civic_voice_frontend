@@ -3,6 +3,8 @@ import Location from "./geoLocation";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./problems.css";
 
+import { API_BASE_URL } from "../config";
+
 function Problems() {
   const [preview, setPreview] = useState(null);
   const [file, setFile] = useState(null);
@@ -42,7 +44,7 @@ function Problems() {
     formData.append("description", text);
 
     try {
-      const res = await fetch("http://localhost:8000/upload", {
+      const res = await fetch(`${API_BASE_URL}/upload`, {
         method: "POST",
         body: formData,
       });
